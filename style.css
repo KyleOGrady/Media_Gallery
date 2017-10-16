@@ -1,10 +1,18 @@
 *, *::after { /*-- selects everything and everything::after --*/
   box-sizing: border-box; /*-- calculates padding as size of box --*/
 }
+
+body {
+  font-family: 'Mada', sans-serif;
+  background-color: #5cdb95;
+  color: #05386b;
+}
+
 #page {
   width: 85%; /*-- restricts page width --*/
   margin: 0 auto; /*-- uses auto margin to center everything --*/
 }
+
 /*-- Rules for Grid --*/
 .container { /*-- selects wrapper element --*/
   margin-top: 5em;
@@ -13,30 +21,44 @@
   grid-template-rows: auto; /*-- auto numbering of rows --*/
   grid-gap: 3em 1em; /*-- sets top-bottom and left-right space between grid cells --*/
 }
+
 @media screen and (min-width: 550px) {  /*-- for screens above 550px  --*/
   .container {grid-template-columns: repeat(2, 1fr);} /*-- increases column count to 2--*/
   .card:first-child {grid-column: 1/ span 2;} /*-- allow first item to span 2 cells when screen is larger--*/
 }
+
 @media screen and (min-width: 1024px) { /*-- for screens above 1024px  --*/
   .container {grid-template-columns: repeat(3, 1fr);} /*-- increase column count to 3 --*/
 }
+
 @media screen and (min-width: 1280px) { /*-- for screens above 1280px  --*/
   .container {grid-template-columns: repeat(4, 1fr);} /*-- increase column count to 4 --*/
 }
+
 .card {
   position: relative; /*-- positions each card so children can be positioned --*/
-  border: 1px solid #ccc; /*-- crappy border --*/
+  /*border: 1px solid #ccc; */
   padding: 8px; /*-- small space inside each card--*/
 }
+
 video {
   width: 100%;
 }
-.thumb { /*-- card images --*/
-  background-image: url('pix/sample.png'); /*-- sets background image --*/
+
+.card-image { /*-- card images --*/
   padding-bottom: 60%; /*-- creates space below the image--*/
-  background-size: cover; /*-- sets it to cover the div --*/
-  background-position: center center; /*-- positions image in center vert. and horiz. --*/
+
+  background-position: top center; 
+  background-size: cover;
+  padding-bottom: 60%;
+  filter: blur(5px);
+  transition: filter 0.3s ease-in;
 }
+
+.card-image:hover {
+    filter: blur(0px);
+}
+
 .link {
   position: absolute; /*-- sets button position to absolute --*/
   top: .5em; /*-- half a line from the top --*/
@@ -48,10 +70,22 @@ video {
   box-shadow: 1px 1px 2px rgba(0,0,0,0.4);
   opacity: .9;
 }
-.link:hover {
+
+.button{
+  font-size: .90rem;
+  padding: .9rem;
+  font-family: 'Mada', sans-serif;
+  margin-left: 70px;
+  margin-right: 70px;
+  border-radius: 7px;
+  background-color: #edf5e1;
+}
+
+.button:hover {
   box-shadow: 2px 2px 6px rgba(0,0,0,0.4);
   opacity: 1;
 }
+
 /*-- Styles for slideshow --*/
 .slideshow-wrapper {
   position: relative; /*-- this allows children to be position absolutely --*/
@@ -59,9 +93,11 @@ video {
   margin-top: 2em; /*-- adds space above--*/
   max-width: 1440px; /*-- contrains slideshow on largest screens --*/
 }
+
 .slideshow-wrapper img {
   width: 100%; /*-- makes slideshow responsive in size --*/
 }
+
 .prev, .next {
   cursor: pointer; /*-- changes hover cursor to the hand --*/
   position: absolute; /*-- positions arrows absolutely--*/
@@ -75,16 +111,20 @@ video {
   transition: 0.6s ease; /*-- sets transition speed for arrow hover--*/
   border-radius: 0 3px 3px 0; /*-- slightly rounds inside borders --*/
 }
+
 .next {
   right: 0; /*-- positions next arrow hard right --*/
   border-radius: 3px 0 0 3px; /*-- rounds the outside borders --*/
 }
+
 .prev:hover, .next:hover {
   background-color: rgba(0,0,0,0.8); /*-- gives a background for contrast on hover --*/
 }
+
 .text-center {
   text-align: center; /*-- aligns indicators center --*/
 }
+
 .captiontext {
   background: rgba(0,0,0,0.4);
   color: #f2f2f2; /*-- sets color to almost white --*/
@@ -95,6 +135,7 @@ video {
   width: 100%; /*-- sets width equal to container width --*/
   text-align: center; /*-- aligns text center --*/
 }
+
 .numberof {
   color: #f2f2f2; /*-- sets color to almost white --*/
   font-size: 12px; /*-- sets font size --*/
@@ -102,6 +143,7 @@ video {
   position: absolute; /*-- positions numberof text absolutely--*/
   top: 0; /*-- sets position hard to the top--*/
 }
+
 .indicator {
   cursor:pointer; /*-- changes hover cursor to the hand --*/
   height: 13px; /*-- sets height of dots --*/
@@ -112,9 +154,11 @@ video {
   display: inline-block; /*-- displays in a horizontal line --*/
   transition: background-color 0.6s ease; /*-- allows background change to take time --*/
 }
+
 .active, .indicator:hover {
   background-color: #717171; /*-- changes background color on hover/active to darker gray  --*/
 }
+
 /* Fading animation */
 .fade {
   -webkit-animation-name: fade; /*-- webkit prefix  --*/
@@ -122,14 +166,17 @@ video {
   animation-name: fade; /*-- defines which animation to use --*/
   animation-duration: 1.5s; /*-- sets the duration --*/
 }
+
 @-webkit-keyframes fade { /*-- webkit prefix --*/
   from {opacity: .4}
   to {opacity: 1}
 }
+
 @keyframes fade { /*-- sets "fade" animation properties --*/
   from {opacity: .4} /*-- sets start of animation --*/
   to {opacity: 1} /*-- sets end of animation --*/
 }
+
 /* On smaller screens, decrease text size */
 @media only screen and (max-width: 300px) {
   .prev, .next,.text {font-size: 11px}
